@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+         <Button
+             android:id="@+id/btn_recyclerview"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:text="Recyclerview"
+             android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_lifecycle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="LifeCycle"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_jump"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Jump"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Fragment"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_event"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Event"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Data"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_toast"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Toast"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_dialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dialog"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_progress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Progress"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_customdialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CustomDialog"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_broadcast"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Broadcast"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_RuntimePermission"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="RuntimePermission"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_Contacts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Contacts"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_Notification"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Notification"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_Camera"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Camera"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_Album"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Album"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btn_PlayerAudio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PlayerAudio"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_PlayerVideo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PlayerAudio"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_Database"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Database"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_LitePal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="LitePal"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_WebView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="WebView"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_Network"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Network"
+            android:textAllCaps="false"/>
+
+    </LinearLayout>
+
+</ScrollView>
