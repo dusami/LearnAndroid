@@ -5,6 +5,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.Objects;
 
 import okhttp3.Call;
 import okhttp3.MediaType;
@@ -15,7 +16,7 @@ import okhttp3.Response;
 
 public class OkHttpUtil {
 
-    public static void GetOkHttpRequest(String address, okhttp3.Callback callback){
+    private static void GetOkHttpRequest(String address, okhttp3.Callback callback){
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
                 .url(address)
@@ -24,7 +25,7 @@ public class OkHttpUtil {
     }
 
 
-    public static void PostJSONFile (String address, okhttp3.Callback callback, JSONObject jsonObject) {
+    private static void PostJSONObject(String address, okhttp3.Callback callback, JSONObject jsonObject) {
         String jsonSting = jsonObject.toString();
         final MediaType MEDIA_TYPE_MARKDOWN = MediaType.parse("application/json");
         OkHttpClient client = new OkHttpClient();
@@ -39,7 +40,7 @@ public class OkHttpUtil {
 
     public static JSONObject getJSONObject (String address, JSONObject jsonObject){
         final JSONObject[] json = new JSONObject[1];
-        OkHttpUtil.PostJSONFile(address, new okhttp3.Callback() {
+        OkHttpUtil.PostJSONObject(address, new okhttp3.Callback() {
             @Override
             public void onFailure(@NotNull Call call, @NotNull IOException e) {
                 e.printStackTrace();
@@ -48,7 +49,7 @@ public class OkHttpUtil {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try {
-                    json[0] = new JSONObject(response.body().string());
+                    json[0] = new JSONObject(Objects.requireNonNull(response.body()).string());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -69,7 +70,7 @@ public class OkHttpUtil {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try {
-                    jsonObject[0] = new JSONObject(response.body().string());
+                    jsonObject[0] = new JSONObject(Objects.requireNonNull(response.body()).string());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

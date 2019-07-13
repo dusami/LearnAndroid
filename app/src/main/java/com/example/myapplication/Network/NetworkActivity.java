@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.myapplication.OkHttp.OkHttpUtil;
 import com.example.myapplication.R;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -28,8 +27,13 @@ import java.io.StringReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
+import java.util.Objects;
 
 import javax.xml.parsers.SAXParserFactory;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class NetworkActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -55,72 +59,64 @@ public class NetworkActivity extends AppCompatActivity implements View.OnClickLi
 
     private void sendRequestWithOkHttp(){
         new Thread(() -> {
-            //                OkHttpClient client = new OkHttpClient();
-//                Request request = new Request.Builder()
-////                        .url("https://www.baidu.com")
-////                        .url("http://10.0.2.2/get_data.xml")
-//                        .url("http://10.0.2.2/get_data.json")
-//                        .build();
-//                Response response = client.newCall(request).execute();
-//                String responseData = response.body().string();
-////                parseXMLWithPull(responseData);
-////                parseXMLWithSAX(responseData);
-////                parseJSONWithJSONObject(responseData);
-////                parseJSONWithGSON(responseData);
-//                showResponse(responseData);
-
-            JSONObject jsonObject = OkHttpUtil.getJSONObject("address",new JSONObject());
-
-
+            try {
+                OkHttpClient client = new OkHttpClient();
+                Request request = new Request.Builder()
+//                        .url("https://www.baidu.com")
+//                        .url("http://10.0.2.2/get_data.xml")
+                        .url("http://10.0.2.2/get_data.json")
+                        .build();
+                Response response = client.newCall(request).execute();
+                String responseData = Objects.requireNonNull(response.body()).string();
+//                parseXMLWithPull(responseData);
+//                parseXMLWithSAX(responseData);
+//                parseJSONWithJSONObject(responseData);
+                parseJSONWithGSON(responseData);
+                showResponse(responseData);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }).start();
     }
 
     private void sendRequestWithHttpURLConnection(){
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                HttpURLConnection connection = null;
-                BufferedReader reader = null;
-                try {
-                    URL url = new URL("https://www.baidu.com");
-                    connection = (HttpURLConnection) url.openConnection();
-                    connection.setRequestMethod("GET");
-                    connection.setConnectTimeout(8000);
-                    connection.setReadTimeout(8000);
-                    InputStream in = connection.getInputStream();
+        new Thread(() -> {
+            HttpURLConnection connection = null;
+            BufferedReader reader = null;
+            try {
+                URL url = new URL("https://www.baidu.com");
+                connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("GET");
+                connection.setConnectTimeout(8000);
+                connection.setReadTimeout(8000);
+                InputStream in = connection.getInputStream();
 
-                    reader = new BufferedReader(new InputStreamReader(in));
-                    StringBuilder response = new StringBuilder();
-                    String line;
-                    while ((line = reader.readLine()) != null){
-                        response.append(line);
+                reader = new BufferedReader(new InputStreamReader(in));
+                StringBuilder response = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null){
+                    response.append(line);
+                }
+                showResponse(response.toString());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }finally {
+                if (reader != null){
+                    try {
+                        reader.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
-                    showResponse(response.toString());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }finally {
-                    if (reader != null){
-                        try {
-                            reader.close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    if (connection != null){
-                        connection.disconnect();
-                    }
+                }
+                if (connection != null){
+                    connection.disconnect();
                 }
             }
         }).start();
     }
 
     private void showResponse(final String response){
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                responseTest.setText(response);
-            }
-        });
+        runOnUiThread(() -> responseTest.setText(response));
     }
 
     private void parseXMLWithPull(String xmlData){
