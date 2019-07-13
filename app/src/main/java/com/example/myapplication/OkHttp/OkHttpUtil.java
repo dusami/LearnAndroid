@@ -24,20 +24,22 @@ public class OkHttpUtil {
         client.newCall(request).enqueue(callback);
     }
 
-    public static void PostJSONFile (String address, okhttp3.Callback callback, File file) {
+
+    public static void PostJSONFile (String address, okhttp3.Callback callback, JSONObject jsonObject) {
+        String jsonSting = jsonObject.toString();
         final MediaType MEDIA_TYPE_MARKDOWN = MediaType.parse("application/json");
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
                 .url(address)
-                .post(RequestBody.create(file, MEDIA_TYPE_MARKDOWN))
+                .post(RequestBody.create(jsonSting, MEDIA_TYPE_MARKDOWN))
                 .build();
         client.newCall(request).enqueue(callback);
 
     }
 
 
-    public static JSONObject getJSONObject (String address, File file){
-        final JSONObject[] jsonObject = new JSONObject[1];
+    public static JSONObject getJSONObject (String address, JSONObject jsonObject){
+        final JSONObject[] json = new JSONObject[1];
         OkHttpUtil.PostJSONFile(address, new okhttp3.Callback() {
             @Override
             public void onFailure(@NotNull Call call, @NotNull IOException e) {
@@ -47,12 +49,33 @@ public class OkHttpUtil {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try {
-                   jsonObject[0] = new JSONObject(response.body().string());
+                    json[0] = new JSONObject(response.body().string());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
-        }, file);
+        }, jsonObject);
+        return json[0];
+    }
+
+
+    public static JSONObject getJSONObject (String address){
+        final JSONObject[] jsonObject = new JSONObject[1];
+        OkHttpUtil.GetOkHttpRequest(address, new okhttp3.Callback() {
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                try {
+                    jsonObject[0] = new JSONObject(response.body().string());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
         return jsonObject[0];
     }
 
