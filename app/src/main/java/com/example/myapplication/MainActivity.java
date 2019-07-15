@@ -15,16 +15,17 @@ import com.example.myapplication.Contacts.ContactsActivity;
 import com.example.myapplication.Database.DatabaseActivity;
 import com.example.myapplication.LitePal.LitePalActivity;
 import com.example.myapplication.Network.NetworkActivity;
+import com.example.myapplication.Network.WebViewActivity;
 import com.example.myapplication.Notification.NotificationActivity;
 import com.example.myapplication.Player.PlayVideoActivity;
 import com.example.myapplication.Player.PlayerAudioActivity;
 import com.example.myapplication.RecyclerView.RecycleViewActivity;
-import com.example.myapplication.RuntimePermissionTest.RuntimePermissionActivity;
+import com.example.myapplication.RuntimePermission.RuntimePermissionActivity;
+import com.example.myapplication.Service.ServiceActivity;
 import com.example.myapplication.UI.CustomDialogActivity;
 import com.example.myapplication.UI.DialogActivity;
 import com.example.myapplication.UI.ProgressActivity;
 import com.example.myapplication.UI.ToastActivity;
-import com.example.myapplication.Network.WebViewActivity;
 import com.example.myapplication.activityLife.LifeCycleActivity;
 import com.example.myapplication.broadcast.BroadcastActivity;
 import com.example.myapplication.dataStorage.DataStorageActivity;
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
     private Button mBtnLitePal;
     private Button mBtnWebView;
     private Button mBtnNetwork;
+    private Button mBtnService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -83,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
         mBtnLitePal = findViewById(R.id.btn_LitePal);
         mBtnWebView = findViewById(R.id.btn_WebView);
         mBtnNetwork = findViewById(R.id.btn_Network);
+        mBtnService = findViewById(R.id.btn_Service);
         setListeners();
         ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},0);
     }
@@ -111,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
         mBtnLitePal.setOnClickListener(onClick);
         mBtnWebView.setOnClickListener(onClick);
         mBtnNetwork.setOnClickListener(onClick);
+        mBtnService.setOnClickListener(onClick);
     }
 
     private class OnClick implements View.OnClickListener{
@@ -227,6 +231,11 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.btn_Network:
                     //跳转到Network的演示界面
                     intent = new Intent(MainActivity.this, NetworkActivity.class);
+                    break;
+
+                case R.id.btn_Service:
+                    //跳转到Service的演示界面
+                    intent = new Intent(MainActivity.this, ServiceActivity.class);
                     break;
             }
             startActivity(intent);

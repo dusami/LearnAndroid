@@ -22,9 +22,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
-        tools:ignore="GoogleAppIndexingWarning"
-        android:usesCleartextTraffic="true">
-        <activity android:name=".Network.NetworkActivity"></activity>
+        android:usesCleartextTraffic="true"
+        tools:ignore="GoogleAppIndexingWarning">
+        <service
+            android:name=".Service.MyService"
+            android:enabled="true"
+            android:exported="true"></service>
+
+        <activity android:name=".Service.ServiceActivity" />
+        <activity android:name=".Network.NetworkActivity" />
         <activity android:name=".Network.WebViewActivity" />
 
         <provider
@@ -100,7 +106,7 @@
         <activity android:name=".Notification.NotificationTestActivity" />
         <activity android:name=".Notification.NotificationActivity" />
         <activity android:name=".Contacts.ContactsActivity" />
-        <activity android:name=".RuntimePermissionTest.RuntimePermissionActivity" />
+        <activity android:name=".RuntimePermission.RuntimePermissionActivity" />
         <activity android:name=".Camera.CameraActivity" />
     </application>
 
